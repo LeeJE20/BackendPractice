@@ -1,13 +1,22 @@
 package com.example.demo.pojo.order.member;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import com.example.demo.pojo.order.AppConfig;
+
 @DisplayName("MemberService 클래스의")
 public class MemberServiceTest {
-    private MemberService memberService = new MemberServiceImpl();
+    private MemberService memberService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
 
     @Nested
     class Discribe_join_메서드는 {
@@ -25,7 +34,7 @@ public class MemberServiceTest {
                 Member findMember = memberService.findMember(memberA.getId());
 
                 // then
-                Assertions.assertThat(findMember).isEqualTo(findMember);
+                Assertions.assertThat(findMember).isEqualTo(memberA);
             }
         }
     }

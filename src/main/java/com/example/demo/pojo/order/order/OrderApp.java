@@ -1,14 +1,15 @@
 package com.example.demo.pojo.order.order;
 
+import com.example.demo.pojo.order.AppConfig;
 import com.example.demo.pojo.order.member.Grade;
 import com.example.demo.pojo.order.member.Member;
 import com.example.demo.pojo.order.member.MemberService;
-import com.example.demo.pojo.order.member.MemberServiceImpl;
 
 public class OrderApp {
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
 
         Long memberId = 1L;
         Member member = new Member(memberId, "memberA", Grade.VIP);

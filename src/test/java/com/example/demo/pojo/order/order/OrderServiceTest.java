@@ -1,19 +1,27 @@
 package com.example.demo.pojo.order.order;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import com.example.demo.pojo.order.AppConfig;
 import com.example.demo.pojo.order.member.Grade;
 import com.example.demo.pojo.order.member.Member;
 import com.example.demo.pojo.order.member.MemberService;
-import com.example.demo.pojo.order.member.MemberServiceImpl;
 
 @DisplayName("OrderService 클래스의")
 public class OrderServiceTest {
-    MemberService memberService = new MemberServiceImpl();
-    OrderService orderService = new OrderServiceImpl();
+    MemberService memberService;
+    OrderService orderService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+        orderService = appConfig.orderService();
+    }
 
     @Nested
     class createOrder_메서드는 {
